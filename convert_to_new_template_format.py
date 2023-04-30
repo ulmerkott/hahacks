@@ -35,7 +35,6 @@ class LegacyTemplateSensorConverter():
             ses[sensor_name]["unique_id"] = ses[sensor_name].get("unique_id", str(uuid.uuid4()))
             new_sensor = {
                 "name": sensor_name,
-                "state": ses[sensor_name]['value_template'],
                 "attributes": {
                     "friendly_name": ses[sensor_name].get("friendly_name", sensor_name)
                 }
