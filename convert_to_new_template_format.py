@@ -36,9 +36,12 @@ class LegacyTemplateSensorConverter():
             new_sensor = {
                 "name": sensor_name,
                 "attributes": {
-                    "friendly_name": ses[sensor_name].get("friendly_name", sensor_name)
+                    "friendly_name": sensor_name
                 }
             }
+            if friendly_name := ses[sensor_name].get("friendly_name"):
+                new_sensor["attributes"]["friendly_name"] = friendly_name
+                del ses[sensor_name]["friendly_name"]
 
             for old_attr, new_attr in self.ATTR_NAME_CONVERSION_TABLE.items():
                 if attr := ses[sensor_name].get(old_attr):
